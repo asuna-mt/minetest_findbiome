@@ -250,7 +250,7 @@ minetest.register_on_mods_loaded(function()
 	mods_loaded = true
 end)
 
--- Regiver chat commands
+-- Register chat commands
 do
 	minetest.register_chatcommand("findbiome", {
 		description = S("Find and teleport to biome"),
