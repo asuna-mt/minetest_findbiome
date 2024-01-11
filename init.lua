@@ -1,5 +1,7 @@
 local S = minetest.get_translator("findbiome")
 
+findbiome = {}
+
 local mod_biomeinfo = minetest.get_modpath("biomeinfo") ~= nil
 local mg_name = minetest.get_mapgen_setting("mg_name")
 local water_level = tonumber(minetest.get_mapgen_setting("water_level"))
@@ -108,7 +110,7 @@ local function find_default_biome()
 	return nil
 end
 
-local function find_biome(pos, biomes)
+function findbiome.find_biome(pos, biomes)
 	pos = vector.round(pos)
 	-- Pos: Starting point for biome checks. This also sets the y co-ordinate for all
 	-- points checked, so the suitable biomes must be active at this y.
@@ -273,7 +275,7 @@ do
 			if invalid_biome then
 				return false, S("Biome does not exist!")
 			end
-			local biome_pos, success = find_biome(pos, {param})
+			local biome_pos, success = findbiome.find_biome(pos, {param})
 			if success then
 				player:set_pos(biome_pos)
 				return true, S("Biome found at @1.", minetest.pos_to_string(biome_pos))

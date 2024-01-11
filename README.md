@@ -14,6 +14,11 @@ able to find the biome.
 
 If the biome could not be found, just move to somewhere else and try again.
 
+## Modding info
+
+For modders, this mod offers a single function to search biomes via code.
+See `API.md` for details.
+
 ## Authors
 - paramat (MIT License)
 - Wuzzy (MIT License)
