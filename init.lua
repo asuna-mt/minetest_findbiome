@@ -23,13 +23,13 @@ else
 	playable_limit_max = vector.new(limit_estimate, limit_estimate, limit_estimate)
 end
 
--- Parameters
--------------
+-- Default parameters
+---------------------
 
 -- Resolution of search grid in nodes.
-local res = 64
+local DEFAULT_SEARCH_GRID_RESOLUTION = 64
 -- Number of points checked in the square search grid (edge * edge).
-local checks = 128 * 128
+local DEFAULT_CHECKED_POINTS = 128 * 128
 
 -- End of parameters
 --------------------
@@ -123,7 +123,14 @@ local function find_default_biome()
 	return nil
 end
 
-function findbiome.find_biome(pos, biomes)
+function findbiome.find_biome(pos, biomes, res, checks)
+	if not res then
+		res = DEFAULT_SEARCH_GRID_SIZE
+	end
+	if not checks then
+		checks = DEFAULT_CHECKED_POINTS
+	end
+
 	pos = vector.round(pos)
 	-- Pos: Starting point for biome checks. This also sets the y co-ordinate for all
 	-- points checked, so the suitable biomes must be active at this y.
