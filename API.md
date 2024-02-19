@@ -1,6 +1,6 @@
 # Find Biome API
 
-This mod has a single public function:
+This mod has two public functions:
 
 ## `findbiome.find_biome(pos, biomes, res, checks)`
 
@@ -34,3 +34,25 @@ Returns `<biome position>, <success>`.
   active, too. See the `biomeinfo` mod for more information
 * Be careful not to check too many points, as this can lead to potentially longer
   searches which may freeze the server for a while
+
+## `findbiome.list_biomes()`
+
+Lists all registered biomes in the world.
+
+### Parameters
+
+None.
+
+### Return value
+
+Returns `<biomes>, <success>`.
+
+* `<success>` is `true` on success and `false` on failure.
+* `<biomes>` is a table (a list) containing all registered biomes in alphabetical order, or `nil` in the rare case that no biomes are registered.
+
+### Additional notes
+
+* If the mapgen `v6` is used, this function only works if the mod `biomeinfo` is
+  active, too. It will return `nil` if disabled. See the `biomeinfo` mod for more information.
+* If there is an error and `nil` is returned, there will be a relevant 
+message in the chat to explain it.

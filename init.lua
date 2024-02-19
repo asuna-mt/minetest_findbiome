@@ -250,6 +250,35 @@ minetest.register_on_mods_loaded(function()
 	mods_loaded = true
 end)
 
+function findbiome.list_biomes(param)
+	if not mods_loaded then
+		return nil, false
+	end
+	local biomes
+	local b = 0
+	if mg_name == "v6" then
+		if not mod_biomeinfo then
+			minetest.chat_send_all(S("Not supported. The “biomeinfo” mod is required for v6 mapgen support!"))
+			return nil, false
+		end
+		biomes = biomeinfo.get_active_v6_biomes()
+		b = #biomes
+	else
+		biomes = {}
+		for k,v in pairs(minetest.registered_biomes) do
+			table.insert(biomes, k)
+			b = b + 1
+		end
+	end
+	if b == 0 then
+		minetest.chat_send_all(S("No biomes."))
+		return nil, true
+	else
+		table.sort(biomes)
+		return biomes, true
+	end
+end
+
 -- Register chat commands
 do
 	minetest.register_chatcommand("findbiome", {

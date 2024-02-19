@@ -2,8 +2,8 @@
 
 ## Description
 This is a mod to help with mod/game development for Minetest.
-It adds a command (“findbiome”) to find a biome nearby and teleport you to it
-and another command (“listbiomes”) to list biomes.
+It adds a command (“findbiome”) to find a biome nearby and teleport you to it,
+and another command (“listbiomes”) to list all biomes.
 
 Version: 1.1.1
 
@@ -16,12 +16,13 @@ If the biome could not be found, just move to somewhere else and try again.
 
 ## Modding info
 
-For modders, this mod offers a single function to search biomes via code.
+For modders, this mod offers two functions to search or list biomes via code, similar to the chat commands.
 See `API.md` for details.
 
 ## Authors
 - paramat (MIT License)
 - Wuzzy (MIT License)
+- Skivling (MIT License, `list_biomes()` function)
 
 This mod is free software. See `license.txt` for license information.
 
