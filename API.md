@@ -48,11 +48,16 @@ None.
 Returns `<biomes>, <success>`.
 
 * `<success>` is `true` on success and `false` on failure.
-* `<biomes>` is a table (a list) containing all registered biomes in alphabetical order, or `nil` in the rare case that no biomes are registered.
+* `<biomes>` is a table.
+  * If there are no errors, it will be a list of all registered biomes, in alphabetical order.
+  * Possible errors: (the message will be the first and only value)
+    * If no biomes are found, it will be `"No biomes."`
+    * If `v6` mapgen is used and `biomeinfo` is not enabled, it will be 
+      `"Not supported. The “biomeinfo” mod is required for v6 mapgen support!"`
+    * If not all mods have loaded into the world yet, it will be `"Wait until all mods have loaded!"`
 
 ### Additional notes
 
 * If the mapgen `v6` is used, this function only works if the mod `biomeinfo` is
-  active, too. It will return `nil` if disabled. See the `biomeinfo` mod for more information.
-* If there is an error and `nil` is returned, there will be a relevant 
-message in the chat to explain it.
+  active, too. See the `biomeinfo` mod for more information.
+* The error messages are always sent in English so the API user can check for them. It is possible to then use a translator on the returned value before showing it to the player, if that is what is wanted.
