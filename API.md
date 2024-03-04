@@ -50,14 +50,15 @@ Returns `<biomes>, <success>`.
 * `<success>` is `true` on success and `false` on failure.
 * `<biomes>` is a table.
   * If there are no errors, it will be a list of all registered biomes, in alphabetical order.
-  * Possible errors: (the message will be the first and only value)
-    * If no biomes are found, it will be `"No biomes."`
+  * Possible errors: (the message will be the first table value)
+    * If no biomes are found, it will be `"No biomes."` and `true`.
     * If `v6` mapgen is used and `biomeinfo` is not enabled, it will be 
-      `"Not supported. The “biomeinfo” mod is required for v6 mapgen support!"`
-    * If not all mods have loaded into the world yet, it will be `"Wait until all mods have loaded!"`
+      `"Not supported. The “biomeinfo” mod is required for v6 mapgen support!"` and `false`.
+    * If not all mods have loaded into the world yet, it will be `"Wait until all mods have loaded!"` and `false`.
 
 ### Additional notes
 
 * If the mapgen `v6` is used, this function only works if the mod `biomeinfo` is
   active, too. See the `biomeinfo` mod for more information.
-* The error messages are always sent in English so the API user can check for them. It is possible to then use a translator on the returned value before showing it to the player, if that is what is wanted.
+* The error messages are always sent in English so the API user can check for them. It is possible to then use a translator on the returned value before showing it to the player, if that is what is wanted. See how errors are handled by the chat command.
+* It is better to just check the success value, unless the error message may interfere with other functions.
