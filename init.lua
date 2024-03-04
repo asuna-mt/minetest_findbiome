@@ -341,18 +341,11 @@ do
 		privs = { debug = true },
 		func = function(name, param)
 			local biomes = findbiome.list_biomes()
-			
 			-- Error checking before sending them in chat
-			if biomes[1] == "Not supported. The “biomeinfo” mod is required for v6 mapgen support!" then
+			if not biomes then -- send error message
 				minetest.chat_send_player(name, S(biomes[1]))
 				return false
-			elseif biomes[1] == "Wait until all mods have loaded!" then -- if not mods_loaded
-				minetest.chat_send_player(name, S(biomes[1]))
-				return false
-			elseif biomes[1] == "No biomes." then
-				minetest.chat_send_player(name, S(biomes[1]))
-				return true
-			else -- no errors found, send all biomes in chat
+			else -- it worked, send all biomes or error message if no biomes were found
 				table.sort(biomes)
 				for b=1, #biomes do
 					minetest.chat_send_player(name, biomes[b])
