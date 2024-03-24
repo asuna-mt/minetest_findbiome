@@ -1,4 +1,5 @@
 local S = minetest.get_translator("findbiome")
+local NS = function(s) return s end
 
 findbiome = {}
 
@@ -254,12 +255,12 @@ function findbiome.list_biomes(param)
 	local biomes = {}
 	local b = 0
 	if not mods_loaded then
-		table.insert(biomes, "Wait until all mods have loaded!")
+		table.insert(biomes, NS("Wait until all mods have loaded!"))
 		return false, biomes
 	end
 	if mg_name == "v6" then
 		if not mod_biomeinfo then
-			table.insert(biomes, "Not supported. The “biomeinfo” mod is required for v6 mapgen support!")
+			table.insert(biomes, NS("Not supported. The “biomeinfo” mod is required for v6 mapgen support!"))
 			return false, biomes
 		end
 		biomes = biomeinfo.get_active_v6_biomes()
@@ -272,7 +273,7 @@ function findbiome.list_biomes(param)
 		end
 	end
 	if b == 0 then
-		table.insert(biomes, "No biomes.")
+		table.insert(biomes, NS("No biomes."))
 		return true, biomes
 	else
 		table.sort(biomes)
