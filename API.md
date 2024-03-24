@@ -45,16 +45,16 @@ None.
 
 ### Return value
 
-Returns `<biomes>, <success>`.
+Returns `<success>, <biomes>`.
 
 * `<success>` is `true` on success and `false` on failure.
 * `<biomes>` is a table.
   * If there are no errors, it will be a list of all registered biomes, in alphabetical order.
-  * Possible errors: (the message will be the first table value)
-    * If no biomes are found, it will be `"No biomes."` and `true`.
-    * If `v6` mapgen is used and `biomeinfo` is not enabled, it will be 
-      `"Not supported. The “biomeinfo” mod is required for v6 mapgen support!"` and `false`.
-    * If not all mods have loaded into the world yet, it will be `"Wait until all mods have loaded!"` and `false`.
+  * If there is an error, it will be a table with the first element being an error message.
+  * Possible errors:
+    * No biomes are found.
+    * `v6` mapgen is used and `biomeinfo` mod is not enabled.
+    * Not all mods have loaded into the world yet.
 
 ### Additional notes
 

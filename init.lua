@@ -255,12 +255,12 @@ function findbiome.list_biomes(param)
 	local b = 0
 	if not mods_loaded then
 		table.insert(biomes, "Wait until all mods have loaded!")
-		return biomes, false
+		return false, biomes
 	end
 	if mg_name == "v6" then
 		if not mod_biomeinfo then
 			table.insert(biomes, "Not supported. The “biomeinfo” mod is required for v6 mapgen support!")
-			return biomes, false
+			return false, biomes
 		end
 		biomes = biomeinfo.get_active_v6_biomes()
 		b = #biomes
@@ -273,10 +273,10 @@ function findbiome.list_biomes(param)
 	end
 	if b == 0 then
 		table.insert(biomes, "No biomes.")
-		return biomes, true
+		return true, biomes
 	else
 		table.sort(biomes)
-		return biomes, true
+		return true, biomes
 	end
 end
 
@@ -340,12 +340,12 @@ do
 		params = "",
 		privs = { debug = true },
 		func = function(name, param)
-			local biomes = findbiome.list_biomes()
+			local success, biomes = findbiome.list_biomes()
 			-- Error checking before sending them in chat
-			if not biomes then -- send error message
+			if success == false then -- send error message
 				minetest.chat_send_player(name, S(biomes[1]))
 				return false
-			else -- it worked, send all biomes or error message if no biomes were found
+			else -- it worked, send all biomes
 				table.sort(biomes)
 				for b=1, #biomes do
 					minetest.chat_send_player(name, biomes[b])
