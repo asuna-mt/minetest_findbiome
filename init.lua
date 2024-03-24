@@ -273,7 +273,6 @@ function findbiome.list_biomes(param)
 		end
 	end
 	if b == 0 then
-		table.insert(biomes, NS("No biomes."))
 		return true, biomes
 	else
 		table.sort(biomes)
@@ -347,9 +346,14 @@ do
 				minetest.chat_send_player(name, S(biomes[1]))
 				return false
 			else -- it worked, send all biomes
-				table.sort(biomes)
-				for b=1, #biomes do
-					minetest.chat_send_player(name, biomes[b])
+				if #biomes == 0 then
+					minetest.chat_send_player(name, S("No biomes."))
+					return true
+				else
+					table.sort(biomes)
+					for b=1, #biomes do
+						minetest.chat_send_player(name, biomes[b])
+					end
 				end
 				return true
 			end

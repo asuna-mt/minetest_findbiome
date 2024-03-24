@@ -52,12 +52,12 @@ Returns `<success>, <biomes>`.
   * If there are no errors, it will be a list of all registered biomes, in alphabetical order.
   * If there is an error, it will be a table with the first element being an error message.
   * Possible errors:
-    * No biomes are found.
     * `v6` mapgen is used and `biomeinfo` mod is not enabled.
     * Not all mods have loaded into the world yet.
 
 ### Additional notes
 
+* If no biomes have been registered, `<biomes>` will be an empty table, but it still counts as success if there was no error.
 * If the mapgen `v6` is used, this function only works if the mod `biomeinfo` is
   active, too. See the `biomeinfo` mod for more information.
 * The error messages are always sent in English so the API user can check for them. It is possible to then use a translator on the returned value before showing it to the player, if that is what is wanted. See how errors are handled by the chat command.
