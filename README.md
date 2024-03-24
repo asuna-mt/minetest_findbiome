@@ -5,7 +5,7 @@ This is a mod to help with mod/game development for Minetest.
 It adds a command (“findbiome”) to find a biome nearby and teleport you to it,
 and another command (“listbiomes”) to list all biomes.
 
-Version: 1.1.1
+Version: 1.2.0
 
 ## Known limitations
 There's no guarantee you will always find the biome, even if it exists in the world.
