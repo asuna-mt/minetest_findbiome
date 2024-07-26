@@ -98,7 +98,7 @@ end
 local function find_default_biome()
 	local all_biomes = minetest.registered_biomes
 	local biome_count = 0
-	for b, biome in pairs(all_biomes) do
+	for _, _ in pairs(all_biomes) do
 		biome_count = biome_count + 1
 	end
 	-- Trivial case: No biomes registered, default biome is everywhere.
@@ -112,7 +112,7 @@ local function find_default_biome()
 	local pos = {}
 	-- Just check a lot of random positions
 	-- It's a crappy algorithm but better than nothing.
-	for i=1, 100 do
+	for _=1, 100 do
 		pos.x = math.random(playable_limit_min.x, playable_limit_max.x)
 		pos.y = math.random(playable_limit_min.y, playable_limit_max.y)
 		pos.z = math.random(playable_limit_min.z, playable_limit_max.z)
@@ -142,7 +142,7 @@ function findbiome.find_biome(pos, biomes, res, checks)
 	local edge_dist = 0
 	local dir_step = 0
 	local dir_ind = 1
-	local success = false
+	local success
 	local spawn_pos
 	local biome_ids
 
@@ -170,7 +170,7 @@ function findbiome.find_biome(pos, biomes, res, checks)
 	local function search()
 		local attempt = 1
 		while attempt < 3 do
-			for iter = 1, checks do
+			for _ = 1, checks do
 				local biome_data = minetest.get_biome_data(pos)
 				-- Sometimes biome_data is nil
 				local biome = biome_data and biome_data.biome
@@ -189,7 +189,7 @@ function findbiome.find_biome(pos, biomes, res, checks)
 							spawn_pos = {x = spos.x, y = spos.y, z = spos.z}
 						end
 						if spawn_pos then
-							local adjusted_pos, outside = adjust_pos_to_biome_limits(spawn_pos, biome_id)
+							local _, outside = adjust_pos_to_biome_limits(spawn_pos, biome_id)
 							if is_in_world(spawn_pos) and not outside then
 								return true
 							end
@@ -207,7 +207,7 @@ function findbiome.find_biome(pos, biomes, res, checks)
 		if not mod_biomeinfo then return
 			false
 		end
-		for iter = 1, checks do
+		for _ = 1, checks do
 			local found_biome = biomeinfo.get_v6_biome(pos)
 			for i = 1, #biomes do
 				local searched_biome = biomes[i]
@@ -251,7 +251,7 @@ minetest.register_on_mods_loaded(function()
 	mods_loaded = true
 end)
 
-function findbiome.list_biomes(param)
+function findbiome.list_biomes()
 	local biomes = {}
 	local b = 0
 	if not mods_loaded then
@@ -267,7 +267,7 @@ function findbiome.list_biomes(param)
 		b = #biomes
 	else
 		biomes = {}
-		for k,v in pairs(minetest.registered_biomes) do
+		for k, _ in pairs(minetest.registered_biomes) do
 			table.insert(biomes, k)
 			b = b + 1
 		end
