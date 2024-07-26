@@ -343,19 +343,14 @@ do
 			local success, biomes = findbiome.list_biomes()
 			-- Error checking before sending them in chat
 			if success == false then -- send error message
-				minetest.chat_send_player(name, S(biomes[1]))
-				return false
+				return false, S(biomes[1])
 			else -- it worked, send all biomes
 				if #biomes == 0 then
-					minetest.chat_send_player(name, S("No biomes."))
-					return true
+					return true, S("No biomes.")
 				else
 					table.sort(biomes)
-					for b=1, #biomes do
-						minetest.chat_send_player(name, biomes[b])
-					end
+					return true, table.concat(biomes[b], "\n")
 				end
-				return true
 			end
 		end,
 	})
