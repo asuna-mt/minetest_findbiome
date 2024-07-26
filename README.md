@@ -21,8 +21,9 @@ See `API.md` for details.
 
 ## Authors
 - paramat (MIT License)
-- Wuzzy (MIT License)
+- rstcxk (MIT License, polish translation, general cleanups)
 - Skivling (MIT License, `list_biomes()` function)
+- Wuzzy (MIT License)
 
 This mod is free software. See `license.txt` for license information.
 
