@@ -65,7 +65,7 @@ local function adjust_pos_to_biome_limits(pos, biome_id)
 		local ax = axes[a]
 		local min, max
 		if biome[ax.."_min"] then
-			min = biome[ax.."_min"]* `<success>` is `true` on success and `false` on failure.
+			min = biome[ax.."_min"]
 		else
 			min = playable_limit_min[ax]
 		end
