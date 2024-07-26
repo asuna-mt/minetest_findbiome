@@ -349,7 +349,7 @@ do
 					return true, S("No biomes.")
 				else
 					table.sort(biomes)
-					return true, table.concat(biomes[b], "\n")
+					return true, table.concat(biomes, "\n")
 				end
 			end
 		end,
