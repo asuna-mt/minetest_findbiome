@@ -5,6 +5,7 @@ Find Biome=Znajdź biom
 Adds commands to list and find biomes=Dodaje komendy do znajdowania i wypisywania biomów
 
 # mod strings
+Wait until all mods have loaded!=
 Find and teleport to biome=Znajduje i teleportuje do biomu
 <biome>=<biom>
 No player.=Gracz nie istnieje.
