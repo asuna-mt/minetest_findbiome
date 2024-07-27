@@ -107,7 +107,7 @@ local function find_default_biome()
 		if not y then
 			y = 0
 		end
-		return vector.new({ x = 0, y = y, z = 0 })
+		return vector.new(0, y, 0)
 	end
 	local pos = vector.new()
 	-- Just check a lot of random positions
@@ -182,11 +182,11 @@ function findbiome.find_biome(pos, biomes, res, checks)
 						local good_spawn_height = pos.y <= water_level + 16 and pos.y >= water_level
 						local spawn_y = minetest.get_spawn_level(spos.x, spos.z)
 						if spawn_y then
-							spawn_pos = vector.new({x = spos.x, y = spawn_y, z = spos.z})
+							spawn_pos = vector.new(spos.x, spawn_y, spos.z)
 						elseif not good_spawn_height then
-							spawn_pos = vector.new({x = spos.x, y = spos.y, z = spos.z})
+							spawn_pos = vector.new(spos.x, spos.y, spos.z)
 						elseif attempt >= 2 then
-							spawn_pos = vecor.new({x = spos.x, y = spos.y, z = spos.z})
+							spawn_pos = vector.new(spos.x, spos.y, spos.z)
 						end
 						if spawn_pos then
 							local _, outside = adjust_pos_to_biome_limits(spawn_pos, biome_id)
@@ -214,7 +214,7 @@ function findbiome.find_biome(pos, biomes, res, checks)
 				if found_biome == searched_biome then
 					local spawn_y = minetest.get_spawn_level(pos.x, pos.z)
 					if spawn_y then
-						spawn_pos = vector.new({x = pos.x, y = spawn_y, z = pos.z})
+						spawn_pos = vector.new(pos.x, spawn_y, pos.z)
 						if is_in_world(spawn_pos) then
 							return true
 						end
